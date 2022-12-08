@@ -92,6 +92,20 @@ def main():
     instance.set_the_number(x)
     print("Sigma: " , instance.get_sigma())
     
+    instance.set_the_number(20)
+    print("Catalan ", instance.get_catalan())
+    print("Catalan ", instance.get_catalan(15))
+    
+    print("get_fibonacci_list", instance.get_fibonacci_list())
+    print("get_fibonacci_list", instance.get_fibonacci_list(15))
+    
+    
+    instance.set_the_number(15)
+    print("get_motzin", instance.get_motzkin())
+    print("get_motzin", instance.get_motzkin(20))
+    
+    
+    
     
 
 if __name__ == '__main__':

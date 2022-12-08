@@ -160,12 +160,56 @@ class Test(unittest.TestCase):
         
     def testGetFactorials(self):
         instance = NumberTheory.NumberTheory(10)
-        result = instance.get_factorials()
+        result = instance.get_factorial()
         expected = 3628800
-        self.assertEquals(result, expected, "Get Factorials")
-        result = instance.get_factorials(12)
+        self.assertEquals(result, expected, "Get Factorial")
+        result = instance.get_factorial(12)
         expected = 479001600
-        self.assertEquals(result,expected,"Get Factorials")
+        self.assertEquals(result,expected,"Get Factorial")
+        
+    def testGetCatalan(self):
+        instance = NumberTheory.NumberTheory(20)
+        result = instance.get_catalan()
+        expected = 6564120420
+        self.assertEquals(result, expected, "Get Catalan")
+        result = instance.get_catalan(10)
+        expected = 16796
+        self.assertEquals(result, expected, "Get Catalan")
+        
+    def testGetFibonacciList(self):
+        instance = NumberTheory.NumberTheory(20)
+        result = instance.get_fibonacci_list()
+        expected = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]
+        self.assertListEqual(expected, result,"Fibonacci list should be equal")
+        self.assertCountEqual(expected, result, "Fibonacci count should be equal")
+        result = instance.get_fibonacci_list(15)
+        expected = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377]
+        self.assertListEqual(expected, result,"Fibonacci list should be equal")
+        self.assertCountEqual(expected, result, "Fibonacci count should be equal")
+        
+    def testGetMotzkin(self):
+        instance = NumberTheory.NumberTheory(20)
+        result = instance.get_motzkin()
+        expected = 50852019
+        self.assertEquals(result, expected, "Get Motzkin")
+        result = instance.get_motzkin(15)
+        expected = 310572
+        self.assertEquals(result, expected, "Get Motzkin")
+        
+    def testGetLucas(self):
+        instance = NumberTheory.NumberTheory(12)
+        result = instance.get_lucas_list()
+        expected = [2, 1, 3, 4, 7, 11, 18, 29, 47, 76, 123, 199,]
+        self.assertListEqual(expected, result,"Lucas list should be equal")
+        self.assertCountEqual(expected, result, "Lucas count should be equal")
+        result = instance.get_lucas_list(33)
+        expected = [2, 1, 3, 4, 7, 11, 18, 29, 47, 76, 123, 199, 322, 521, 843, 1364,
+                    2207, 3571, 5778, 9349, 15127, 24476, 39603, 64079, 103682, 167761, 271443, 439204, 710647, 1149851,
+                    1860498, 3010349, 4870847,]        
+        self.assertListEqual(expected, result,"Lucas list should be equal")
+        self.assertCountEqual(expected, result, "Lucas count should be equal")
+        
+        
         
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

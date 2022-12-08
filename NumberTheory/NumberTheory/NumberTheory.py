@@ -4,22 +4,19 @@ Created on Dec 6, 2022
 @author: JCSchneider
 '''
 import math
-from pip._vendor.six import _meth_self
-from pickle import NONE
-from pkg_resources import _sset_none
 import functools
+from fontTools.misc.textTools import num2binary
 
-
-def prime_factors(n):
-    i = 2
-    while i*i <=n :
-        if n % 1 == 0:
-            n /= i
-            yield i
-        else:
-            i += 1
-    if n > 1:
-        yield n 
+# def prime_factors(n):
+#     i = 2
+#     while i*i <=n :
+#         if n % 1 == 0:
+#             n /= i
+#             yield i
+#         else:
+#             i += 1
+#     if n > 1:
+#         yield n 
 
 
 class NumberTheory:    
@@ -238,19 +235,7 @@ class NumberTheory:
         else:
             return self.get_abundance(v) == 0   
         
-        
-    def get_sigma(self, v=None):        
-        if v == None:
-            v = self.get_the_number()
-            
-        if v == 1:
-            return 1
-        result = 0
-        for num in range(1,v+1):
-            if v % num == 0:
-                result += num
-        return result
-    
+   
     def get_kynea(self, v = None):
         if v == None:
             v = self.get_the_number()
@@ -270,9 +255,8 @@ class NumberTheory:
         return int(carolFinal)
     
     #@functools.cache
-    def get_factorials(self, v = None):
+    def get_factorial(self, v = None):
         retVal= 1
-        
         if v == None:
             v = self.get_the_number()
             
@@ -280,3 +264,83 @@ class NumberTheory:
             retVal *= i 
         return retVal
         
+         
+    def get_sigma(self, v=None):        
+        if v == None:
+            v = self.get_the_number()            
+        if v == 1:
+            return 1
+        result = 0
+        for num in range(1,v+1):
+            if v % num == 0:
+                result += num
+        return result
+    
+        
+    def get_catalan(self, v=None):
+        if v == None:
+            v = self.get_the_number()        
+        catA = self.get_factorial(2*v)
+        catB = self.get_factorial(v + 1)
+        catC = self.get_factorial(v )
+        catFinal = catA / (catB * catC);
+        return catFinal
+        
+     
+    def get_fibonacci_list(self, v=None):
+        if v == None:
+            v = self.get_the_number()
+        num1 = 0
+        num2 = 1
+        counter = 0
+        retList = []
+        while counter < v:
+            retList.append(num1)
+            num3 = num2 + num1
+            num1 = num2
+            num2 = num3
+            counter += 1
+        return retList
+    
+    def get_lucas_list(self, v = None):
+        retList = []
+        if v == None:
+            v = self.get_the_number()
+        num1 = 2;
+        num2 = 1;
+        counter = 0
+        
+        while counter < v:
+            retList.append(num1)
+            num3 = num2 + num1
+            num1 = num2
+            num2 = num3
+            counter+=1
+        return retList
+            
+            
+    def get_motzkin(self, v=None):
+        memo = {}
+          
+        if v == None:
+            v = self.get_the_number()
+         
+        if (v == 0) or ( v == 1):
+            return 1
+        
+        if v in memo:
+            return memo.get(v)
+        
+        m1 = self.get_motzkin(v - 1)
+        m2 = self.get_motzkin(v - 2)  
+        
+        firstPart = (2 * v + 1) * m1
+        secondPart = (3 * v - 3) * m2
+        lastPart = v + 2
+        retVal = (firstPart + secondPart) / lastPart
+        memo[v] = retVal
+        
+        return retVal
+     
+    
+            
