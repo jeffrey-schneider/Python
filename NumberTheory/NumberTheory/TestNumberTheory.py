@@ -4,7 +4,6 @@ Created on Dec 6, 2022
 @author: JCSchneider
 '''
 import NumberTheory
-from test.dtracedata import instance
 
 
 def main():

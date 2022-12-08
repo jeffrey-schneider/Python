@@ -4,9 +4,7 @@ Created on Dec 6, 2022
 @author: JCSchneider
 '''
 import unittest
-from NumberTheory import NumberTheory
-from lib2to3.fixer_util import Number
-from test.dtracedata import instance
+import NumberTheory
 
 
 class Test(unittest.TestCase):
