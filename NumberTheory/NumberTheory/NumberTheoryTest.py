@@ -209,7 +209,55 @@ class Test(unittest.TestCase):
         self.assertListEqual(expected, result,"Lucas list should be equal")
         self.assertCountEqual(expected, result, "Lucas count should be equal")
         
+    def testGetPellList(self):
+        instance = NumberTheory.NumberTheory(12)
+        result = instance.get_pell_list()
+        expected = [0, 1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, 5741]
+        self.assertListEqual(expected, result,"Pell list should be equal")
+        self.assertCountEqual(expected, result, "Pell count should be equal")
+        result = instance.get_pell_list(11)
+        expected = [0, 1, 2, 5, 12, 29, 70, 169, 408, 985, 2378,]
+        self.assertListEqual(expected, result,"Pell list should be equal")
+        self.assertCountEqual(expected, result, "Pell count should be equal")
         
+    def testGetPell(self):
+        instance = NumberTheory.NumberTheory(15)
+        result = instance.get_pell()
+        expected = 80782
+        self.assertEquals(result, expected, "Get Pell")        
+        result = instance.get_pell(17)
+        expected = 470832
+        self.assertEquals(result, expected, "Get Pell")        
+        
+    def testGetJacobsthalList(self):
+        instance = NumberTheory.NumberTheory(15)
+        result = instance.get_jacobsthal_list()
+        expected = [0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731]
+        self.assertListEqual(expected, result,"Jacobsthal list should be equal")
+        self.assertCountEqual(expected, result, "Jacobsthal count should be equal")
+        result = instance.get_jacobsthal_list(14)
+        expected = [0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365]
+        self.assertListEqual(expected, result,"Jacobsthal list should be equal")
+        self.assertCountEqual(expected, result, "Jacobsthal count should be equal")
+    
+    def testGetJacobsthal(self):
+        instance = NumberTheory.NumberTheory(15)
+        result = instance.get_jacobsthal()
+        expected = 2731
+        self.assertEquals(result, expected, "Get Jacobsthal")        
+        result = instance.get_jacobsthal(17)
+        expected = 10923
+        self.assertEquals(result, expected, "Get Jacobsthal")        
+           
+    def testGetAlternatingFactorial(self):
+        instance = NumberTheory.NumberTheory(15)
+        result = instance.get_alternating_factorial()
+        expected = 1226280710981
+        self.assertEquals(result, expected, "Get Alternating Factorial")
+        result = instance.get_alternating_factorial(21)
+        expected = 48773618881154822981
+        self.assertEquals(result, expected, "Get Alternating Factorial")
+           
         
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

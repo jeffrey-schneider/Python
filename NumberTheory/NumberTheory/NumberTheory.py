@@ -343,4 +343,61 @@ class NumberTheory:
         return retVal
      
     
-            
+    def get_pell_list(self, v=None):
+        if v == None:
+            v = self.get_the_number()
+        num1 = 0
+        num2 = 1
+        counter = 0
+        retList = []
+        while counter < v:
+            retList.append(num1)
+            num3 = 2 * num2 + num1
+            num1 = num2
+            num2 = num3
+            counter += 1
+        return retList
+     
+    def get_pell(self, v=None):
+        theList = []        
+        if v == None:
+            v = self.get_the_number()
+        theList = self.get_pell_list(v)
+        theStack = [x for x in theList]
+        return theStack.pop()
+
+    
+    def get_jacobsthal_list(self, v=None):
+        if v == None:
+            v = self.get_the_number()
+        theList = []
+        num1 = 0
+        num2 = 1
+        counter = 1
+        while counter < v:
+            theList.append(num1)
+            num3 = num2 + 2 * num1
+            num1 = num2
+            num2 = num3
+            counter += 1
+        return theList 
+    
+    def get_jacobsthal(self, v=None):        
+        if v == None:
+            v = self.get_the_number()
+        theList = []
+        theList = self.get_jacobsthal_list(v)
+        theStack = [x for x in theList]
+        return theStack.pop()
+    
+    
+    def get_alternating_factorial(self, v=None):
+        if v == None:
+            v = self.get_the_number()
+        theDictionary = {}
+        theDictionary[1] = 1
+        theDictionary[2] = 1
+        for i in range(3,v+1):
+            theDictionary[i] = self.get_factorial(i) - theDictionary[i-1]
+        return theDictionary.get(v)
+        

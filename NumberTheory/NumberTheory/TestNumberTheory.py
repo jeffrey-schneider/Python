@@ -4,6 +4,7 @@ Created on Dec 6, 2022
 @author: JCSchneider
 '''
 import NumberTheory
+from test.dtracedata import instance
 
 
 def main():
@@ -91,6 +92,7 @@ def main():
     x = 9
     instance.set_the_number(x)
     print("Sigma: " , instance.get_sigma())
+    print("Sigma: " , instance.get_sigma(x * 10))
     
     instance.set_the_number(20)
     print("Catalan ", instance.get_catalan())
@@ -104,7 +106,21 @@ def main():
     print("get_motzin", instance.get_motzkin())
     print("get_motzin", instance.get_motzkin(20))
     
+    instance.set_the_number(10)
+    print("getPellList: " , instance.get_pell_list())
+    print("getPellList: " , instance.get_pell_list(12))
+    print("getPell: " , instance.get_pell())
+    print("getPell: " , instance.get_pell(12))
     
+    instance.set_the_number(15)
+    print("getJacobsthalList ", instance.get_jacobsthal_list())
+    print("getJacobsthalList ", instance.get_jacobsthal_list(12))
+    instance.set_the_number(12)
+    print("getJacobsthal ", instance.get_jacobsthal())
+    print("getJacobsthal ", instance.get_jacobsthal(15))
+    
+    instance.set_the_number(21)
+    print("alternating Factorial: " , instance.get_alternating_factorial())
     
     
 
