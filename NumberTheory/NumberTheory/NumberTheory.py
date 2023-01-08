@@ -4,8 +4,6 @@ Created on Dec 6, 2022
 @author: JCSchneider
 '''
 import math
-import functools
-from fontTools.misc.textTools import num2binary
 
 # def prime_factors(n):
 #     i = 2
@@ -400,4 +398,94 @@ class NumberTheory:
         for i in range(3,v+1):
             theDictionary[i] = self.get_factorial(i) - theDictionary[i-1]
         return theDictionary.get(v)
+        
+    def is_deficient(self, v=None):
+        if v == None:
+            v = self.get_the_number()
+        return self.get_aliquot_sum(v) < v
+
+    
+    def is_super_abundant(self, v=None):
+        if v == None:
+            v = self.get_the_number()
+        M = 0.0
+        N = self.get_sigma(v) / v
+        for i in range(1,v):
+            M = self.get_sigma(i)/i
+        if M >= N:
+            return False
+        return True
+
+    def gcd(self, b, n):
+        if n == 0:
+            return b
+        return self.gcd(n, b%n)
+
+    def lcm(self, a, b=None):
+        if b == None:
+            b = self.get_the_number()
+        return a * (b / self.gcd(a,b))
+    
+    def power(self, b, exp, n):
+        if exp == 0:
+            return 1
+        result = self.power(b, exp/2, n) % n
+        result = ( result * result) %n
+        if exp %2 == 1:
+            result = (result * b) %n
+        return result
+
+    def is_carmichael(self, v=None):
+        if v == None:
+            v = self.get_the_number()
+        for b in range(2,v+1):
+            if (self.gcd(b, v) == 1) and (self.power(b, v-1, v) != 1):
+                return False
+        return True
+
+    # Function to find the N-th
+    # icosikaipentagon number
+    def isDNum(self,n):
+        # number should be
+            # greater than 3
+        if n < 4:
+            return False
+     
+        # Check every k in range 2 to n-1
+        for k in range(2, n):
+            numerator = pow(k, n - 2) - k
+            #print("Numerator: " , numerator)
+            hcf = math.gcd(n, k)
+     
+            # condition for D-Number
+            if(hcf ==1 and (numerator % n) != 0):
+                return False
+        return True
+ 
+
+    
+
+    def get_end_point(self,lat1,lon1,bearing,d):
+        R = 6371                     #Radius of the Earth
+        brng = math.radians(bearing) #convert degrees to radians
+        d = d*1.852                  #convert nautical miles to km
+        lat1 = math.radians(lat1)    #Current lat point converted to radians
+        lon1 = math.radians(lon1)    #Current long point converted to radians
+        lat2 = math.asin( math.sin(lat1)*math.cos(d/R) + math.cos(lat1)*math.sin(d/R)*math.cos(brng))
+        lon2 = lon1 + math.atan2(math.sin(brng)*math.sin(d/R)*math.cos(lat1),math.cos(d/R)-math.sin(lat1)*math.sin(lat2))
+        lat2 = math.degrees(lat2)
+        lon2 = math.degrees(lon2)
+        return (lat2, lon2)
+
+
+    def get_bearing(self,lat1, lon1, lat2, lon2):
+        dLon = (lon2 - lon1)
+        x = math.cos(math.radians(lat2)) * math.sin(math.radians(dLon))
+        y = math.cos(math.radians(lat1)) * math.sin(math.radians(lat2)) -\
+            math.sin(math.radians(lat1)) * math.cos(math.radians(lat2)) *\
+            math.cos(math.radians(dLon))
+        brng = math.atan2(x,y)
+        brng = math.degrees(brng)
+        return brng
+
         

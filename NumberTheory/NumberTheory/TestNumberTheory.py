@@ -4,7 +4,6 @@ Created on Dec 6, 2022
 @author: JCSchneider
 '''
 import NumberTheory
-from test.dtracedata import instance
 
 
 def main():
@@ -121,6 +120,40 @@ def main():
     
     instance.set_the_number(21)
     print("alternating Factorial: " , instance.get_alternating_factorial())
+
+    instance.set_the_number(16)
+    print("is Deficient: ", instance.is_deficient())
+    print("is Deficient: ", instance.is_deficient(60))
+
+    print("gcd: ", instance.gcd(8,12))
+    print("lcm:  ", instance.lcm(15, 75))
+
+    print("https://stackoverflow.com/questions/51826611/speed-up-a-search-for-carmichael-numbers")
+    instance.set_the_number(6601)
+    #print(instance.is_carmichael())
+    #print(instance.is_carmichael(1105))
+
+    for n in range(100,120):
+        if instance.isDNum(n):
+            print(n, end=' ')
+    print()
+        
+    
+
+
+    
+
+    print("https://forum.generic-mapping-tools.org/t/how-to-calculate-coordinates-from-bearing-distance/1217")
+    lat2, lon2 = instance.get_end_point(lat1 = 50, lon1=8,bearing=310, d=23)
+    print(lat2, " ", lon2)
+
+    bearing = instance.get_bearing(lat1 = 50, lon1 = 8, lat2=50.24533,lon2=7.54112)
+    print(bearing)
+
+    bearing = instance.get_bearing(lat1 = 30.07134, lon1 = -97.23076,
+                                   lat2=30.0709,lon2=-97.22907)
+    print(bearing)                               
+    
     
     
 

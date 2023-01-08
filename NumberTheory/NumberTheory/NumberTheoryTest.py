@@ -257,7 +257,17 @@ class Test(unittest.TestCase):
         result = instance.get_alternating_factorial(21)
         expected = 48773618881154822981
         self.assertEquals(result, expected, "Get Alternating Factorial")
-           
+
+    def testIsDeficient(self):
+        instance = NumberTheory.NumberTheory(15)
+        self.assertTrue(instance.is_deficient())
+        self.assertTrue(instance.is_deficient(9))
+
+    def testIsSuperAbundant(self):
+        instance = NumberTheory.NumberTheory(360)
+        self.assertTrue(instance.is_super_abundant())
+        self.assertTrue(instance.is_super_abundant(1260))
+        self.assertFalse(instance.is_super_abundant(25))
         
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
